@@ -1,0 +1,28 @@
+{
+    "name": "xavicabot/filament-log-viewer",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "XaviCabot\\FilamentLogViewer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Xavi Cabot",
+            "email": "xavi@unancor.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "filament/support": "^3.0",
+        "calebporzio/sushi": "^2.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "XaviCabot\\FilamentLogViewer\\FilamentLogViewerServiceProvider"
+            ]
+        }
+    }
+}
