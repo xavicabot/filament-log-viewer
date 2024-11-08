@@ -11,6 +11,7 @@ class FilamentLogViewerServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('filament-log-viewer')
+            ->hasConfigFile()
             ->hasViews();
     }
 }

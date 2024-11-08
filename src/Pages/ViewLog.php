@@ -25,6 +25,16 @@ class ViewLog extends Page implements HasTable
 
     protected ?string $maxContentWidth = 'full';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filament-log-viewer.navigation.group') ?? __('Debuggers');
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return config('filament-log-viewer.navigation.sort') ?? 1;
+    }
+
     public static function table(Table $table): Table
     {
         return $table
