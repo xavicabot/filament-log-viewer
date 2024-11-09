@@ -4,6 +4,7 @@ namespace XaviCabot\FilamentLogViewer\Pages;
 
 use Filament\Infolists\Components\TextEntry;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -82,6 +83,12 @@ class ViewLog extends Page implements HasTable
                             ->formatStateUsing(fn ($state) => new HtmlString('<p style="white-space: pre-wrap">' . $state . '</p>')),
                     ])
                     ->slideOver(),
+            ])
+            ->headerActions([
+                Action::make('clear_log')
+                    ->label(__('Clear Log'))
+                    ->requiresConfirmation()
+                    ->action(fn () => file_put_contents(storage_path('logs/laravel.log'), '')),
             ]);
     }
 }
