@@ -16,6 +16,25 @@ Publish the assets:
 php artisan vendor:publish --provider="Xavical\FilamentLogViewer\FilamentLogViewerServiceProvider"
 ```
 
+## Usage
+
+This plugin adds a 'Log Viewer' functionality in your filament panel(s), letting you view your logs in a more user-friendly way.
+
+## Registering the plugin
+
+```bash
+
+use XaviCabot\FilamentLogViewer\FilamentLogViewerPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            FilamentLogViewerPlugin::make(),
+        ])
+}
+```
+
 ## Configuration
 
 Once you have published the assets, you can configure the package by editing the `config/filament-log-viewer.php` file.
