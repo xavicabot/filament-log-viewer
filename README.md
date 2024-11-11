@@ -7,13 +7,13 @@ This package allows you to easily add a log viewer to your Filament application.
 Require the package using composer:
 
 ```bash
-composer require xavical/filament-log-viewer
+composer require xavicabot/filament-log-viewer
 ```
 
 Publish the assets:
 
 ```bash
-php artisan vendor:publish --provider="Xavical\FilamentLogViewer\FilamentLogViewerServiceProvider"
+php artisan vendor:publish --provider="Xavicabot\FilamentLogViewer\FilamentLogViewerServiceProvider"
 ```
 
 ## Usage
