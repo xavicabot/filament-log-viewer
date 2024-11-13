@@ -76,12 +76,16 @@ class ViewLog extends Page implements HasTable
             ])
             ->actions([
                 ViewAction::make('view')
-                    ->label(false)
+                    ->label(__('Log Details'))
                     ->infolist([
+                        TextEntry::make('text')
+                            ->label(__('Error')),
                         TextEntry::make('stack')
                             ->label(__('Details'))
                             ->formatStateUsing(fn ($state) => new HtmlString('<p style="white-space: pre-wrap">' . $state . '</p>')),
+
                     ])
+                    ->modalHeading(__('Log Details'))
                     ->slideOver(),
             ])
             ->headerActions([
