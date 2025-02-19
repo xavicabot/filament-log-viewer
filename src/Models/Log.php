@@ -11,10 +11,38 @@ class Log extends Model
     use Sushi;
 
     public $timestamps = true;
+    public static string $storage_path = 'storage/logs'; // valor por defecto
+
+    public static function withPath(string $path)
+    {
+        static::$storage_path = $path;
+        return new static();
+    }
+
 
     public function getRows()
     {
-        $logs = $this->getData()['logs'];
+        $data = $this->getData();
+        $logs = $data['logs'];
+
+        if ($logs === null) {
+            // Opción 1: Devolver un array con un mensaje de error
+            return [[
+                'id' => 1,
+                'level' => 'error',
+                'context' => 'system',
+                'folder' => $data['current_folder'],
+                'level_class' => 'danger',
+                'level_img' => 'error',
+                'date' => now(),
+                'text' => 'El archivo es demasiado grande (>50MB) para ser leído',
+                'in_file' => $data['current_file'],
+                'stack' => 'File size exceeds limit',
+            ]];
+
+            // Opción 2: Lanzar una excepción
+            // throw new \Exception('El archivo es demasiado grande (>50MB) para ser leído');
+        }
 
         $data = [];
 
@@ -36,11 +64,14 @@ class Log extends Model
         return $data;
     }
 
-    public function getData()
+    public function getData():array
     {
         $log_viewer = new FilamentLogViewer;
 
+        $log_viewer->setStoragePath(static::$storage_path);
+
         $log_viewer->setFile('laravel.log');
+
         $folderFiles = $log_viewer->getFolderFiles(true);
 
         $data = [

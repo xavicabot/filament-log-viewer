@@ -158,6 +158,7 @@ class FilamentLogViewer
         }
 
         $max_file_size = function_exists('config') ? config('logviewer.max_file_size', self::MAX_FILE_SIZE) : self::MAX_FILE_SIZE;
+
         if (app('files')->size($this->file) > $max_file_size) {
             return null;
         }
@@ -207,6 +208,7 @@ class FilamentLogViewer
                             'in_file' => isset($current[5]) ? $current[5] : null,
                             'stack' => preg_replace("/^\n*/", '', $log_data[$i]),
                         ];
+
                     }
                 }
             }
